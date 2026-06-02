@@ -1,4 +1,4 @@
-from atproto import Client
+    from atproto import Client
 import os
 import re
 import time
@@ -498,7 +498,7 @@ def main():
 
     username = os.getenv(ENV_USERNAME, "").strip()
     password = os.getenv(ENV_PASSWORD, "").strip()
-      if not username or not password:
+    if not username or not password:
         log(f"❌ Missing env {ENV_USERNAME} / {ENV_PASSWORD}")
         return
 
@@ -648,35 +648,4 @@ def main():
         if per_user_count[ak] >= MAX_PER_USER:
             continue
 
-        ok = repost_and_like(client, me, c["uri"], c["cid"], repost_records, like_records, force_refresh=False)
-        if ok:
-            total_done += 1
-            per_user_count[ak] += 1
-            log(f"✅ Repost+Like: {c['uri']}")
-            time.sleep(SLEEP_SECONDS)
-
-    for c in promo_cands:
-        if total_done >= MAX_PER_RUN:
-            break
-
-        ok = repost_and_like(client, me, c["uri"], c["cid"], repost_records, like_records, force_refresh=True)
-        if ok:
-            total_done += 1
-            log(f"✅ PROMO refresh repost+like: {c['uri']}")
-            time.sleep(SLEEP_SECONDS)
-
-    state["repost_records"] = repost_records
-    state["like_records"] = like_records
-    save_state(STATE_FILE, state)
-    log(f"🔥 Done — total reposts this run: {total_done}")
-
-
-if __name__ == "__main__":
-    try:
-        print("=== ABOUT TO CALL MAIN ===", flush=True)
-        main()
-    except Exception:
-        import traceback
-        print("=== FATAL ERROR ===", flush=True)
-        traceback.print_exc()
-        raise
+        ok = repost_and_like(client, me, c["uri"], c["cid"], repost_records,
