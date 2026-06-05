@@ -87,7 +87,7 @@ PROMO_LIST_KEY = "lijst 1"
 LIST_MEMBER_LIMIT = int(os.getenv("LIST_MEMBER_LIMIT", "1500"))
 MAX_PER_RUN = int(os.getenv("MAX_PER_RUN", "100"))
 MAX_PER_USER = int(os.getenv("MAX_PER_USER", "2"))
-HOURS_BACK = int(os.getenv("HOURS_BACK", "2"))
+HOURS_BACK = int(os.getenv("HOURS_BACK", "3"))
 SLEEP_SECONDS = float(os.getenv("SLEEP_SECONDS", "1"))
 
 STATE_FILE = os.getenv("STATE_FILE", "state_beautygroup.json")
