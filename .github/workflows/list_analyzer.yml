@@ -19,8 +19,25 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Find analyzer script
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Repository files:"
+          ls -la
+          echo "Searching for list_analyzer.py:"
+          find . -type f -iname "list_analyzer.py"
+
       - name: Install dependencies
         run: pip install requests
 
-      - name: Analyze Bluesky list
-        run: python list_analyzer.py
+      - name: Run analyzer
+        run: |
+          SCRIPT=$(find . -type f -iname "list_analyzer.py" -print -quit)
+
+          if [ -z "$SCRIPT" ]; then
+            echo "ERROR: list_analyzer.py is missing from this branch."
+            exit 1
+          fi
+
+          python "$SCRIPT"
